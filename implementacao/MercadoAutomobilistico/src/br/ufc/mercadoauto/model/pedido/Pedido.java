@@ -2,7 +2,7 @@ package br.ufc.mercadoauto.model.pedido;
 
 import java.util.Date;
 
-import br.ufc.mercadoauto.model.StatusEnum;
+import br.ufc.mercadoauto.model.enums.StatusEnum;
 
 public class Pedido {
 
