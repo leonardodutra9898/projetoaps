@@ -8,7 +8,6 @@ import br.ufc.mercadoauto.model.pedido.PedidoTest;
 public class App {
 
 	public static void main(String[] args) {
-		System.out.println("Teste");
 		
 		// dados de clientes
 		ClienteTest.clienteTeste();
