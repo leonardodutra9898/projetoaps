@@ -4,20 +4,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.ufc.mercadoauto.interfaces.CRUD;
+import br.ufc.mercadoauto.model.enums.StatusEnum;
+import br.ufc.mercadoauto.model.peca.Pecas;
 import br.ufc.mercadoauto.model.pedido.Pedido;
 
 public class PedidoRepositorio implements CRUD <Pedido, Integer> {
 
 	private int contador = 0;
-	private List<Pedido> pedidos; 
+	public static List<Pedido> pedidos; 
+	private List<Pecas> pecas;
 
 	public PedidoRepositorio() {
-		pedidos = new ArrayList<>(); 
+		pedidos = new ArrayList<>();
+		pecas = PecasRepositorio.pecas;
 	}
 	
 	@Override
 	public void inserir(Pedido p) {
 		pedidos.add(contador++, p);
+		if(p.getStatus() == StatusEnum.FATURADO) {
+			Pecas pTemp = p.getPeca();
+			pTemp.setQtdeEstoque(-1);
+		}
+		
 		System.out.println("Novo pedido!");
 	}
 
@@ -59,6 +68,17 @@ public class PedidoRepositorio implements CRUD <Pedido, Integer> {
 	@Override
 	public int totalRegistros() {
 		return contador;
+	}
+
+	@Override
+	public Pedido pesquisar(String t) {
+		Pedido pTemp = null;
+		for(Pedido p : pedidos) {
+			if(p.getStatus().name() == t.toUpperCase()) {
+				pTemp = p;				
+			}
+		}
+		return pTemp;
 	}
 	
 }

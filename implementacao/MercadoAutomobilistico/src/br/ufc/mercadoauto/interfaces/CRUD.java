@@ -7,6 +7,7 @@ public interface CRUD <T, V> {
 	T obter(long i);
 	void delete(T i);
 	void atualizar(T o);
+	T pesquisar(String t);
 	int totalRegistros();
 	Iterable<T> listar();
 	

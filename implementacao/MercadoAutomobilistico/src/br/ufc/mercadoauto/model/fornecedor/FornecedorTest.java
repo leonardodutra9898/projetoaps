@@ -14,9 +14,10 @@ public class FornecedorTest {
 		fornecedores.inserir(leonardo);
 		fornecedores.inserir(maria);
 		
-		System.out.println("Total de registros => " + fornecedores.totalRegistros() + "\n");
+		System.out.println("Total de registros [FORNECEDORES] => " + fornecedores.totalRegistros() + "\n");
 		
 		
+		System.out.println("LISTANDO FORNECEDORES +++++++++++++++++++++++++++");
 		for(Fornecedor cs : fornecedores.listar()) {
 			System.out.println(" -------------------------------------------- ");
 			System.out.println("Cod ==> " + cs.getCod() + " Nome ==> " + cs.getNome());
@@ -25,21 +26,21 @@ public class FornecedorTest {
 		
 		
 		// atualizando Fornecedor
-		leonardo.setNome("Fornecedor Novo");
-		Fornecedor fTemp = fornecedores.obter(5);
-		System.out.println("\nItem atualizado => " + fTemp.getNome());
+//		leonardo.setNome("Fornecedor Novo");
+//		Fornecedor fTemp = fornecedores.obter(5);
+//		System.out.println("\nItem atualizado => " + fTemp.getNome());
 		
 		// deletando fornecedor
-		fornecedores.delete(maria);
+//		fornecedores.delete(maria);
 		
-		System.out.println("Total de registros Agora => " + fornecedores.totalRegistros() + "  //  Lista Vazia? == " + fornecedores.listaVazia() + " \n");
+//		System.out.println("Total de registros Agora => " + fornecedores.totalRegistros() + "  //  Lista Vazia? == " + fornecedores.listaVazia() + " \n");
 		
 		
-		for(Fornecedor cs : fornecedores.listar()) {
-			System.out.println(" -------------------------------------------- ");
-			System.out.println("Cod ==> " + cs.getCod() + " Nome ==> " + cs.getNome());
-			System.out.println(" -------------------------------------------- ");
-		}
+//		for(Fornecedor cs : fornecedores.listar()) {
+//			System.out.println(" -------------------------------------------- ");
+//			System.out.println("Cod ==> " + cs.getCod() + " Nome ==> " + cs.getNome());
+//			System.out.println(" -------------------------------------------- ");
+//		}
 	}
 	
 }
