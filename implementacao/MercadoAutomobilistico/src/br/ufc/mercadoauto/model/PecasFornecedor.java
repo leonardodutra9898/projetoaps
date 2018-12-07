@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.ufc.mercadoauto.model.fornecedor.Fornecedor;
+import br.ufc.mercadoauto.model.peca.Pecas;
 
 public class PecasFornecedor {
 

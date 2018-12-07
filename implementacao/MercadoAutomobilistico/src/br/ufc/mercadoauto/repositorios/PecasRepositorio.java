@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.ufc.mercadoauto.interfaces.CRUD;
-import br.ufc.mercadoauto.model.Pecas;
+import br.ufc.mercadoauto.model.peca.Pecas;
 
 public class PecasRepositorio implements CRUD <Pecas, Integer> {
 
