@@ -9,7 +9,7 @@ import br.ufc.mercadoauto.model.fornecedor.Fornecedor;
 public class FornecedorRepositorio implements CRUD <Fornecedor, Integer> {
 
 	private int contador = 0;
-	private List<Fornecedor> fornecedores; 
+	public static List<Fornecedor> fornecedores; 
 
 	public FornecedorRepositorio() {
 		fornecedores = new ArrayList<>(); 
@@ -59,6 +59,17 @@ public class FornecedorRepositorio implements CRUD <Fornecedor, Integer> {
 	@Override
 	public int totalRegistros() {
 		return contador;
+	}
+
+	@Override
+	public Fornecedor pesquisar(String t) {
+		Fornecedor fTemp = null;
+		for(Fornecedor f : fornecedores) {
+			if(f.getNome() == t){
+				fTemp = f;				
+			}
+		}
+		return fTemp;
 	}
 	
 }

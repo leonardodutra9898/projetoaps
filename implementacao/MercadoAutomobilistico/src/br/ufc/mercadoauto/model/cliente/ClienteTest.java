@@ -10,13 +10,17 @@ public class ClienteTest {
 		// Add Cliente
 		Cliente leonardo = new Cliente(10, "Leonardo Dutra", "Rua A, 1000", "(88) 9.9910-1010", "Brasil", "América");
 		Cliente maria = new Cliente(25, "Maria Paula", "Rua Alameda, 562", "(81) 9.9280-2310", "Brasil", "América");
+		Cliente cli1 = new Cliente(6, "João Esteves", "Rua C, 50", "(00) 2.2310-1010", "Peru", "América");
+		Cliente cli2 = new Cliente(7, "Mario Vick", "Rua D, 20", "(11) 2.2310-1010", "México", "América do Norte");
 		
 		clientes.inserir(leonardo);
 		clientes.inserir(maria);
+		clientes.inserir(cli1);
+		clientes.inserir(cli2);
 		
-		System.out.println("Total de registros => " + clientes.totalRegistros() + "\n");
+		System.out.println("Total de registros [CLIENTE] => " + clientes.totalRegistros() + "\n");
 		
-		
+		System.out.println("LISTANDO CLIENTES +++++++++++++++++++++++++++");
 		for(Cliente cs : clientes.listar()) {
 			System.out.println(" -------------------------------------------- ");
 			System.out.println("Cod ==> " + cs.getCod() + " Nome ==> " + cs.getNome());
@@ -25,21 +29,21 @@ public class ClienteTest {
 		
 		
 		// atualizando Cliente
-		leonardo.setNome("João Igor");
-		Cliente cliTemp = clientes.obter(10);
-		System.out.println("\nItem atualizado => " + cliTemp.getNome());
+//		leonardo.setNome("João Igor");
+//		Cliente cliTemp = clientes.obter(10);
+//		System.out.println("\nItem atualizado => " + cliTemp.getNome());
 		
 		// deletando cliente
-		clientes.delete(maria);
+//		clientes.delete(maria);
 		
-		System.out.println("Total de registros Agora => " + clientes.totalRegistros() + "  //  Lista Vazia? == " + clientes.listaVazia() + " \n");
-		
-		
-		for(Cliente cs : clientes.listar()) {
-			System.out.println(" -------------------------------------------- ");
-			System.out.println("Cod ==> " + cs.getCod() + " Nome ==> " + cs.getNome());
-			System.out.println(" -------------------------------------------- ");
-		}
+//		System.out.println("Total de registros Agora => " + clientes.totalRegistros() + "  //  Lista Vazia? == " + clientes.listaVazia() + " \n");
+//		
+//		
+//		for(Cliente cs : clientes.listar()) {
+//			System.out.println(" -------------------------------------------- ");
+//			System.out.println("Cod ==> " + cs.getCod() + " Nome ==> " + cs.getNome());
+//			System.out.println(" -------------------------------------------- ");
+//		}
 	}
 	
 }

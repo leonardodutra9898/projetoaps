@@ -9,7 +9,8 @@ import br.ufc.mercadoauto.model.peca.Pecas;
 public class PecasRepositorio implements CRUD <Pecas, Integer> {
 
 	private int contador = 0;
-	private List<Pecas> pecas; 
+	public static List<Pecas> pecas; 
+
 
 	public PecasRepositorio() {
 		pecas = new ArrayList<>(); 
@@ -60,5 +61,16 @@ public class PecasRepositorio implements CRUD <Pecas, Integer> {
 	public int totalRegistros() {
 		return contador;
 	}
-	
+
+	@Override
+	public Pecas pesquisar(String t) {
+		Pecas pTemp = null;
+		for(Pecas p : pecas) {
+			if(p.getNome() == t){
+				pTemp = p;				
+			}
+		}
+		return pTemp;
+	}
+
 }

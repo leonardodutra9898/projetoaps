@@ -11,9 +11,10 @@ public class Pecas {
 	private double tamanho;
 	private double precoCompraFornecedor;
 	private Date dataEnvioFornecedor;
+	private int qtdeEstoque;
 
 	public Pecas(long cod, String nome, double precoVarejo, String marca, double tamanho, double precoCompraFornecedor,
-			Date dataEnvioFornecedor) {
+			Date dataEnvioFornecedor, int qtdeEstoque) {
 		super();
 		this.cod = cod;
 		this.nome = nome;
@@ -22,6 +23,7 @@ public class Pecas {
 		this.tamanho = tamanho;
 		this.precoCompraFornecedor = precoCompraFornecedor;
 		this.dataEnvioFornecedor = dataEnvioFornecedor;
+		this.qtdeEstoque = qtdeEstoque;
 	}
 
 	
@@ -79,6 +81,14 @@ public class Pecas {
 
 	public void setDataEnvioFornecedor(Date dataEnvioFornecedor) {
 		this.dataEnvioFornecedor = dataEnvioFornecedor;
+	}
+
+	public int getQtdeEstoque() {
+		return qtdeEstoque;
+	}
+
+	public void setQtdeEstoque(int qtdeEstoque) {
+		this.qtdeEstoque += qtdeEstoque;
 	}
 	
 }

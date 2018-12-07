@@ -2,67 +2,81 @@ package br.ufc.mercadoauto.model.pedido;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import br.ufc.mercadoauto.model.cliente.Cliente;
 import br.ufc.mercadoauto.model.enums.StatusEnum;
 import br.ufc.mercadoauto.model.peca.Pecas;
+import br.ufc.mercadoauto.repositorios.ClienteRepositorio;
+import br.ufc.mercadoauto.repositorios.PecasRepositorio;
 import br.ufc.mercadoauto.repositorios.PedidoRepositorio;
 
 public class PedidoTest {
 
 	public static void pedidoTeste() {
 		PedidoRepositorio pedidos = new PedidoRepositorio();
-		
-		Calendar dataPeca = Calendar.getInstance(new Locale("America/Sao Paulo"));
-		Date dataCarburador = dataPeca.getTime();
-		Date dataPneu = dataPeca.getTime();
-		
-		Cliente cli1 = new Cliente(6, "João Esteves", "Rua C, 50", "(00) 2.2310-1010", "Peru", "América");
-		Pecas carburador = new Pecas(9, "Motor v2.0 4 cilindros", 1400.00, "Mitsubishi", 12.0, 900.00, dataCarburador);
-		
-		Cliente cli2 = new Cliente(7, "Mario Vick", "Rua D, 20", "(11) 2.2310-1010", "México", "América do Norte");
-		Pecas pneu = new Pecas(20, "Motor v2.0 4 cilindros", 1500.00, "Mitsubishi", 13.0, 1000.00, dataPneu);
-		
-		
+
+		List<Cliente> clientes = ClienteRepositorio.clientes;
+		List<Pecas> pecas = PecasRepositorio.pecas;
+	
 		Date data1 = Calendar.getInstance().getTime();
 		Date data2 = Calendar.getInstance().getTime();
 		Date dataEntregaPedido1 = new Date(Calendar.YEAR + 1, Calendar.JANUARY, Calendar.DATE+5);
 		
 		
 		// Add pedido
-		Pedido pedido1 = new Pedido(15053, data1, null, StatusEnum.NOVO_PEDIDO, 2,cli1,carburador);
-		Pedido pedido2 = new Pedido(23100, data2, dataEntregaPedido1, StatusEnum.FATURADO, 4,cli2,pneu);
+		Pedido pedido1 = new Pedido(15053, data1, null, StatusEnum.NOVO_PEDIDO, 2,clientes.get(2),pecas.get(1));
+		Pedido pedido2 = new Pedido(23100, data2, dataEntregaPedido1, StatusEnum.FATURADO, 4,clientes.get(3),pecas.get(2));
 		
 		pedidos.inserir(pedido1);
 		pedidos.inserir(pedido2);
 		
-		System.out.println("Total de registros => " + pedidos.totalRegistros() + "\n");
+		System.out.println("Total de registros [PEDIDOS] => " + pedidos.totalRegistros() + "\n");
+		System.out.println("Total de registros [PECAS] => " + pecas.size() + "\n");
+		System.out.println("Total de registros [CLIENTES] => " + clientes.size() + "\n");
 		
 		
+		double somaPedidosPrecoInicial = 0.0;
+		double somaPedidosPrecoFinal = 0.0;
+		
+		
+		System.out.println("LISTANDO PEDIDOS +++++++++++++++++++++++++++");
 		for(Pedido ps : pedidos.listar()) {
 			System.out.println(" -------------------------------------------- ");
-			System.out.println("Cod ==> " + ps.getCodPedido() + " Status ==> " + ps.getStatus());
+			System.out.println("Cod ==> " + ps.getCodPedido() + " Status ==> " + ps.getStatus() + ", Qtde => " + ps.getQuantidadePecas() + ", data pedido => "
+					+ ps.getDataPedido() + ", Item == " + ps.getPeca().getNome() + "(" + ps.getPeca().getMarca() + "), valor unit. => " + ps.getPeca().getPrecoVarejo() + ", total de R$ " + 
+					(ps.getQuantidadePecas() * ps.getPeca().getPrecoVarejo()));
 			System.out.println(" -------------------------------------------- ");
+			
+			if(ps.getStatus() == StatusEnum.FATURADO) {
+				somaPedidosPrecoInicial += ps.getQuantidadePecas() * ps.getPeca().getPrecoCompraFornecedor();
+				somaPedidosPrecoFinal += ps.getQuantidadePecas() * ps.getPeca().getPrecoVarejo();
+			}
+
+			
 		}
+		
+		System.out.println("\n\nTOTAL FATURADO COM PEDIDOS ===> R$ " + somaPedidosPrecoFinal);
+		System.out.println("LUCROS DOS PEDIDOS ===> R$ " + (somaPedidosPrecoFinal - somaPedidosPrecoInicial));
 		
 		
 		// atualizando pedido
-		pedido1.setStatus(StatusEnum.CANCELADO);
-		Pedido pedidoTemp = pedidos.obter(15053);
-		System.out.println("\nItem atualizado => " + pedido1.getCodPedido() + ", com Status agora " + pedido1.getStatus());
+//		pedido1.setStatus(StatusEnum.CANCELADO);
+//		Pedido pedidoTemp = pedidos.obter(15053);
+//		System.out.println("\nItem atualizado => " + pedido1.getCodPedido() + ", com Status agora " + pedido1.getStatus());
 		
 		// deletando pedido
-		pedidos.delete(pedido2);
+//		pedidos.delete(pedido2);
 		
-		System.out.println("Total de registros Agora => " + pedidos.totalRegistros() + "  //  Lista Vazia? == " + pedidos.listaVazia() + " \n");
+//		System.out.println("Total de registros Agora => " + pedidos.totalRegistros() + "  //  Lista Vazia? == " + pedidos.listaVazia() + " \n");
 		
 		
-		for(Pedido pe : pedidos.listar()) {
-			System.out.println(" -------------------------------------------- ");
-			System.out.println("Cod ==> " + pe.getCodPedido() + " Status ==> " + pe.getStatus());
-			System.out.println(" -------------------------------------------- ");
-		}
+//		for(Pedido pe : pedidos.listar()) {
+//			System.out.println(" -------------------------------------------- ");
+//			System.out.println("Cod ==> " + pe.getCodPedido() + " Status ==> " + pe.getStatus());
+//			System.out.println(" -------------------------------------------- ");
+//		}
 	}
 	
 }

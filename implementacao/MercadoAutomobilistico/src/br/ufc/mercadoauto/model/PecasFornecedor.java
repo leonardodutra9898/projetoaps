@@ -1,8 +1,5 @@
 package br.ufc.mercadoauto.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import br.ufc.mercadoauto.model.fornecedor.Fornecedor;
 import br.ufc.mercadoauto.model.peca.Pecas;
 
@@ -10,12 +7,7 @@ public class PecasFornecedor {
 
 	private int quantidadeEstoque;
 	private Fornecedor fornecedor;
-	private List<Pecas> pecas;
-	
-
-	public PecasFornecedor() {
-		pecas = new ArrayList<>();
-	}
+	private Pecas peca;
 
 	public int getQuantidadeEstoque() {
 		return quantidadeEstoque;
@@ -33,8 +25,8 @@ public class PecasFornecedor {
 		this.fornecedor = fornecedor;
 	}
 
-	public List<Pecas> getPecas() {
-		return pecas;
+	public Pecas getPecas() {
+		return peca;
 	}
 
 }
