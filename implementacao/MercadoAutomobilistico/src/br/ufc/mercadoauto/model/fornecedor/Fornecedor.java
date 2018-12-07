@@ -1,6 +1,6 @@
 package br.ufc.mercadoauto.model.fornecedor;
 
-import br.ufc.mercadoauto.model.Pessoa;
+import br.ufc.mercadoauto.model.abs.Pessoa;
 
 public class Fornecedor extends Pessoa {
 

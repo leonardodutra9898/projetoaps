@@ -1,6 +1,6 @@
 package br.ufc.mercadoauto.model.cliente;
 
-import br.ufc.mercadoauto.model.Pessoa;
+import br.ufc.mercadoauto.model.abs.Pessoa;
 
 public class Cliente extends Pessoa {
 

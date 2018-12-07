@@ -1,4 +1,4 @@
-package br.ufc.mercadoauto.model;
+package br.ufc.mercadoauto.model.abs;
 
 public abstract class Pessoa {
 
